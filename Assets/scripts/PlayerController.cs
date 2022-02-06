@@ -7,13 +7,13 @@ using UnityStandardAssets.CrossPlatformInput;
 public class PlayerController : MonoBehaviour {
     //   in meters per second.
     [Header("General")]
-    [Tooltip("In ms^-1")][SerializeField] float controlSpeed = 15f;  // скорость
-    [Tooltip("In m")] [SerializeField] float xRange = 5f;    //  границы право лево
-    [Tooltip("In m")] [SerializeField] float yRange = 3f;   //   границы  вверх вниз
+    [Tooltip("In ms^-1")][SerializeField] float controlSpeed = 15f;  // Speed
+    [Tooltip("In m")] [SerializeField] float xRange = 5f;    //  border right left
+    [Tooltip("In m")] [SerializeField] float yRange = 3f;   //   border up down
     [SerializeField] GameObject[] guns;
 
     [Header("Screen-ImagePosition Based")]
-    [SerializeField] float positionPichFactor = -5f;     // pitch   наклон носа
+    [SerializeField] float positionPichFactor = -5f;     // pitch  nose slope
     [SerializeField] float positionYawFactor = 5;      //   yaw
 
     [Header("Control-throw Based")]
@@ -35,13 +35,12 @@ public class PlayerController : MonoBehaviour {
             ProcessFiring();
         }
     }
-    void OnPlayerDeath()  // вызывается по строковой ссылке.
+    void OnPlayerDeath()  // called by string reference.
     {
-        isControlEnabled = false;
-  
+        isControlEnabled = false; 
     }
 
-    private void ProcessRotation()     // управление ротацией
+    private void ProcessRotation()     // rotation management
     {
         float pitchDueToposition = transform.localPosition.y * positionPichFactor;
         float pitchDueToControlThrow = yThrow * controlPichFactor;
@@ -52,10 +51,10 @@ public class PlayerController : MonoBehaviour {
 
         float roll = xThrow * controlRollFactor;
 
-        transform.localRotation = Quaternion.Euler(pitch, yaw, roll);    // возвращение после поворота
+        transform.localRotation = Quaternion.Euler(pitch, yaw, roll);    // return after turning 
     }
 
-    private void ProcessTranslation()   //   процесс управления 
+    private void ProcessTranslation()   //   management process 
     {
         xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
         yThrow = CrossPlatformInputManager.GetAxis("Vertical");
@@ -63,27 +62,25 @@ public class PlayerController : MonoBehaviour {
         float xOffset = xThrow * controlSpeed * Time.deltaTime;
         float yOffset = yThrow * controlSpeed * Time.deltaTime;
 
-
         float rawXPos = transform.localPosition.x + xOffset;
         float clampedXPos = Mathf.Clamp(rawXPos, -xRange, xRange);
 
         float rawYPos = transform.localPosition.y + yOffset;
-        float clampedYPos = Mathf.Clamp(rawYPos, -yRange, yRange);   // математическое вырожение
+        float clampedYPos = Mathf.Clamp(rawYPos, -yRange, yRange);   // borders
 
         transform.localPosition = new Vector3(clampedXPos, clampedYPos, transform.localPosition.z);
     }
 
     void ProcessFiring()
     {
-        if (CrossPlatformInputManager.GetButton("Fire"))
+        if (CrossPlatformInputManager.GetButton("Fire"))   
         {
             SetGunsActive(true);
         }
         else
         {
             SetGunsActive(false);
-        }
-   
+        } 
     }
     private void SetGunsActive( bool isActive)
     {
@@ -92,10 +89,5 @@ public class PlayerController : MonoBehaviour {
             var emissionModule = gun.GetComponent<ParticleSystem>().emission;
             emissionModule.enabled = isActive;
         }
-    }
-
-    
-   
-
-    
+    } 
 }

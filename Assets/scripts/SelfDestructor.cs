@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelfDestructor : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-        Destroy(gameObject, 5f);
-		
-	}
-	
-	
+public class SelfDestructor : MonoBehaviour
+{
+	void Start ()
+	{
+        Destroy(gameObject, 5f);		
+	}	
 }

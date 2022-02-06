@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;  //поскольку это единственный скрипт, который загружает сцены.
+using UnityEngine.SceneManagement;  
 
 public class ColisionHandle : MonoBehaviour {
 
@@ -15,18 +15,12 @@ public class ColisionHandle : MonoBehaviour {
         deathFX.SetActive(true);
         Invoke("ReloadScene", LevelLoadDelay);
     }
-
     private void StartDeathSequence()
-    {
-        
-        SendMessage("OnPlayerDeath");   // строковая ссылка.
-
+    {       
+        SendMessage("OnPlayerDeath");   // string link. 
     }
-    private void ReloadScene()    //связанно с  Invoke("ReloadScene", LevelLoadDelay = 1f);
+    private void ReloadScene()   
     {
         SceneManager.LoadScene(1);
     }
-
-
-
 }

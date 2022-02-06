@@ -21,8 +21,8 @@ public class Enemy : MonoBehaviour {
 
     private void AddBoxCollider()
     {
-        Collider boxCollaider = gameObject.AddComponent<BoxCollider>();  //добавляет boxCollaider всем gameObject
-        boxCollaider.isTrigger = false;  //   отключаем  isTrigger
+        Collider boxCollaider = gameObject.AddComponent<BoxCollider>();  //Add boxCollaider To gameObject
+        boxCollaider.isTrigger = false; 
     }
 
     void OnParticleCollision(GameObject other)
@@ -32,12 +32,11 @@ public class Enemy : MonoBehaviour {
         {
             KillEnemy();
         }
-
     }
 
     private void ProcessHit()
     {
-        scoreBoard.ScoreHit(scorePerHit);   //  когда что-то попадает в него,
+        scoreBoard.ScoreHit(scorePerHit);   
         hits = hits - 1;    // hits--;
     }
 

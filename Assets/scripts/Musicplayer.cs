@@ -5,11 +5,9 @@ using UnityEngine;
 
 public class Musicplayer : MonoBehaviour {
 
-
-
     private void Awake()
-    {                                                        // длина
-        int numMusicPlayers = FindObjectsOfType<Musicplayer>().Length; //<>чтобы указать музыкальный проигрыватель в качестве типа.
+    {                                                       
+        int numMusicPlayers = FindObjectsOfType<Musicplayer>().Length;
         if (numMusicPlayers > 1)
         {
             Destroy(gameObject);
@@ -18,7 +16,5 @@ public class Musicplayer : MonoBehaviour {
         {
             DontDestroyOnLoad(gameObject);
         } 
-    }
-
-   
+    }   
 }

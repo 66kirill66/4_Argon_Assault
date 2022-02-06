@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;    //  что бы работать с текстом
+using UnityEngine.UI;    //  use text / ui
 
 public class ScoreBoard : MonoBehaviour {
 
@@ -11,7 +11,7 @@ public class ScoreBoard : MonoBehaviour {
 	
 	void Start () {
         scoreText = GetComponent<Text>();
-        scoreText.text = score.ToString();      //ToString, чтобы изменить его с целого числа на строку.
+        scoreText.text = score.ToString();      //ToString, to change it from integer to string 
     }
 	
     public void ScoreHit(int scoreIncrease)
